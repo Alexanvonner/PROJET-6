@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 
 //importer le package pour use les variables d'environnements
 const dotenv = require('dotenv');
+// configuration dotenv
+require('dotenv').config()
 
 
-mongoose.connect('mongodb+srv://alexan:22032203@webapi.lejo3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -13,3 +15,5 @@ mongoose.connect('mongodb+srv://alexan:22032203@webapi.lejo3.mongodb.net/myFirst
 
 
   module.exports = mongoose;
+
+  
