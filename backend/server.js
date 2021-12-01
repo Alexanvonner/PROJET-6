@@ -1,7 +1,7 @@
 // importer le package de NODE JS
 const http = require('http');
 
-//impoter l'application APP.JS
+//importer l'application APP.JS
 const app = require('./app');
 
 // importer le package pour utiliser les variables d'environnements
