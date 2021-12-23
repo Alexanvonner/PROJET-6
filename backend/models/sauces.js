@@ -9,4 +9,4 @@ const Schema = mongoose.Schema({
   heat: {type: Number , required: true}
 });
 
-module.exports = mongoose.model('Thing', Schema);
+module.exports = mongoose.model('Sauces', Schema);
