@@ -15,14 +15,14 @@ exports.createSauces = (req, res, next) => {
 
 exports.getSauces = (req, res, next) => {
   Sauces.find()
-    .then(sauces => res.status(200).json(thing))
+    .then(sauces => res.status(200).json(sauces))
     .catch(error => res.status(404).json({ error }));
 };
 
 
 exports.getOneSauces = (req, res, next) => {
   Sauces.findOne({ _id: req.params.id })
-    .then(sauces => res.status(200).json(thing))
+    .then(sauces => res.status(200).json(sauces))
     .catch(error => res.status(404).json({ error }));
 };
 
