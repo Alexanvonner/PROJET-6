@@ -1,5 +1,7 @@
 const express = require('express');
 
+const path = require('path');
+
 //importation de MORGAN ( logger http)
 const morgan = require('morgan');
 
@@ -9,6 +11,7 @@ const saucesRoutes = require('./routes/sauces.js')
 
 //importation des routes 
 const userRoutes = require('./routes/user');
+
 
 
 // pour créer une application express 
@@ -31,12 +34,13 @@ app.use((req, res, next) => {
 // transformer en json
 app.use(bodyParser.json());
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use("/api/auth", userRoutes);
 
 app.use('/api/sauces', saucesRoutes);
 
-app.use('/api/new-sauce', saucesRoutes);
+
 
 
 module.exports = app;

@@ -1,15 +1,29 @@
 const Sauces =  require('../models/sauces');
 
 
+
 exports.createSauces = (req, res, next) => {
-  delete req.body._id;
-  const sauce = new Sauces({
-    ...req.body
+  console.log(req.body)
+  const saucesObject = JSON.parse(req.body.sauce);
+  delete saucesObject._id;
+  const sauces = new Sauces({
+    ...saucesObject,
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
-  sauce.save()
+  sauces.save()
     .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
-    .catch(error => res.status(400).json({ error }));
+    .catch(error => {
+      console.log(error)
+
+      res.status(400).json({ error });
+    })
+      
+      
+      
 };
+
+
+
 
 
 
@@ -28,6 +42,11 @@ exports.getOneSauces = (req, res, next) => {
 
 
 exports.updateSauces = (req, res, next) => {
+  const saucesObject = req.file ?
+  {
+    ...JSON.parse(req.body.sauces),
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  } : { ...req.body };
   Sauces.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
     .then(() => res.status(200).json({ message: 'Objet modifié !'}))
     .catch(error => res.status(400).json({ error }));
