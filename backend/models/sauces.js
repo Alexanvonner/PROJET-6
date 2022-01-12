@@ -6,6 +6,10 @@ const Schema = mongoose.Schema({
   description: { type: String, required: true },
   imageUrl: { type: String, required: true },
   heat: {type: Number , required: true},
+  like: {type:Number, default:0},
+  dislike:{type:Number, default:0},
+  userliked :{type: Array},
+  userdisliked:{type: Array},
 });
 
 module.exports = mongoose.model('Sauces', Schema);

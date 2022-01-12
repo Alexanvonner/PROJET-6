@@ -3,21 +3,20 @@ const Sauces =  require('../models/sauces');
 
 
 exports.createSauces = (req, res, next) => {
-  console.log(req.body)
+
   const saucesObject = JSON.parse(req.body.sauce);
   delete saucesObject._id;
   const sauces = new Sauces({
     ...saucesObject,
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+    like: 0,
+    dislikes: 0,
+    userlikes:[],
+    userdisliked:[]
   });
   sauces.save()
     .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
-    .catch(error => {
-      console.log(error)
-
-      res.status(400).json({ error });
-    })
-      
+    .catch(error => {res.status(400).json({ error });}) 
       
       
 };

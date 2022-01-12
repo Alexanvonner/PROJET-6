@@ -7,11 +7,9 @@ const morgan = require('morgan');
 
 const mongoose = require('./database/database.js');
 
+//importation des routes
 const saucesRoutes = require('./routes/sauces.js')
-
-//importation des routes 
 const userRoutes = require('./routes/user');
-
 
 
 // pour créer une application express 
