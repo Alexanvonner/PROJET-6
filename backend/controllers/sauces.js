@@ -9,7 +9,7 @@ exports.createSauces = (req, res, next) => {
   const sauces = new Sauces({
     ...saucesObject,
     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-    like: 0,
+    likes: 0,
     dislikes: 0,
     userlikes:[],
     userdisliked:[]
@@ -27,6 +27,7 @@ exports.createSauces = (req, res, next) => {
 
 
 exports.getSauces = (req, res, next) => {
+  
   Sauces.find()
     .then(sauces => res.status(200).json(sauces))
     .catch(error => res.status(404).json({ error }));
@@ -34,13 +35,14 @@ exports.getSauces = (req, res, next) => {
 
 
 exports.getOneSauces = (req, res, next) => {
+  
   Sauces.findOne({ _id: req.params.id })
     .then(sauces => res.status(200).json(sauces))
     .catch(error => res.status(404).json({ error }));
 };
 
 
-exports.updateSauces = (req, res, next) => {
+exports.updateSauces = (req, res, next) => {  
   const saucesObject = req.file ?
   {
     ...JSON.parse(req.body.sauces),
