@@ -2,6 +2,9 @@ const express = require('express');
 
 const path = require('path');
 
+
+
+
 //importation de MORGAN ( logger http)
 const morgan = require('morgan');
 
@@ -14,6 +17,8 @@ const userRoutes = require('./routes/user');
 
 // pour créer une application express 
 const app = express();
+
+
 
 // importation de body-parser
 const bodyParser = require("body-parser");

@@ -3,7 +3,6 @@ const Sauces =  require('../models/sauces');
 
 
 exports.createSauces = (req, res, next) => {
-
   const saucesObject = JSON.parse(req.body.sauce);
   delete saucesObject._id;
   const sauces = new Sauces({
@@ -16,18 +15,12 @@ exports.createSauces = (req, res, next) => {
   });
   sauces.save()
     .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
-    .catch(error => {res.status(400).json({ error });}) 
-      
-      
+    .catch(error => {res.status(400).json({ error });})      
 };
 
 
 
-
-
-
 exports.getSauces = (req, res, next) => {
-  
   Sauces.find()
     .then(sauces => res.status(200).json(sauces))
     .catch(error => res.status(404).json({ error }));
@@ -35,9 +28,11 @@ exports.getSauces = (req, res, next) => {
 
 
 exports.getOneSauces = (req, res, next) => {
-  
   Sauces.findOne({ _id: req.params.id })
-    .then(sauces => res.status(200).json(sauces))
+    .then(sauces => {     
+      console.log(sauces)
+      res.status(200).json(sauces)}
+      )
     .catch(error => res.status(404).json({ error }));
 };
 
